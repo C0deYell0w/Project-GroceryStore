@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .card_shadow {
+     background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+    </style>
+</head>
+<body>
+            <div class="col-12 grid-margin stretch-card" >
+              <div class="card " >
+                <div class="card-body card_shadow" >
+                  <h4 class="card-title">Category Entry</h4>
+                  <p class="card-description">
+                    Add Category Details
+                  </p>
+                   <form method="post" action="{% url 'AdminApp:Updatecat' Cat.id %}" enctype="multipart/form-data" class="forms-sample"  >
+                      {% csrf_token %}
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Category Name</label>
+                      <input type="text" class="form-control" name="catname" id="exampleInputName1" placeholder="Name" value="{{ Cat.Cat_Name }}">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Category Description</label>
+                      <textarea class="form-control" name="catdesc" id="exampleTextarea1" rows="4">{{ Cat.Cat_Desc }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleingupload">Current Category Image</label><br>
+                      <img src="{{Cat.Cat_Image.url}}" alt="" id="exampleingupload" srcset="" width="300px" height="190px"></img>
+                    </div>
+
+                     <div class="form-group">
+                        <label> New Category Image </label>
+                        <input type="file" name="catimg" class="file-upload-default" id="image-upload">
+                              <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info"  disabled placeholder="Upload Image" id="image-file-name" >
+                                    <span class="input-group-append">
+                                          <button type="button"  onclick="selectImage()" class="file-upload-browse btn btn-primary">Upload</button>
+                                    </span>
+                               </div>
+                    </div>
+
+                   <button type="submit" class="btn btn-outline-primary btn-icon-text"><i class="mdi mdi-file-check btn-icon-prepend"></i>Submit</button>
+                   <button type="reset" class="btn btn-outline-warning btn-icon-text"><i class="mdi mdi-reload btn-icon-prepend"></i>Clear</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+</body>
+
+</html>
+<script>
+function selectImage() {
+  // Trigger the file input click event
+  document.getElementById('image-upload').click();
+}
+
+// Update the file name input when a file is selected
+document.getElementById('image-upload').addEventListener('change', function() {
+  const fileInput = this;
+  const fileNameInput = document.getElementById('image-file-name');
+
+  if (fileInput.files.length > 0) {
+    fileNameInput.value = fileInput.files[0].name;
+  } else {
+    fileNameInput.value = "Upload Image";
+  }
+});
+</script>
+{% endblock content %}

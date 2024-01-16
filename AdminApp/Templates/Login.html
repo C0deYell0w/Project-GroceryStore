@@ -1,0 +1,154 @@
+<html>
+<html lang="en">
+<head>
+    <!-- Meta information for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
+    <title>Login</title>
+    <style>
+    .body1 {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .maindiv {
+        height: 500px;
+        width: 400px;
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-top:100px;
+        box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.5), 5px 5px 10px rgba(0, 0, 0, 0.5);
+        color: #FFFFFF;
+        background-color: rgba(192, 192, 192, 0.7);
+    }
+
+    .name {
+        height: 40px;
+        width: 90%;
+        border-radius: 5px;
+        opacity: 70%;
+        border: 1px solid #c2bfbf;
+        padding: 5px 5px 5px 16px;
+        margin-top: 5px;
+        margin-left: 18px;
+        line-height: 1;
+        font-size: 15px;
+    }
+
+    .name::placeholder {
+        padding-left: 10px;
+        font-size: 15px;
+        color: #727070;
+    }
+
+
+
+    .password {
+        height: 40px;
+        width: 90%;
+        border-radius: 5px;
+        opacity: 70%;
+        border: 1px solid #c2bfbf;
+        padding: 5px 5px 5px 14px;
+        margin-top: 5px;
+        margin-left: 18px;
+        line-height: 1px;
+        font-size: 15px;
+    }
+    .password::placeholder {
+        padding-left: 10px;
+        font-size: 15px;
+        color: #727070;
+    }
+
+
+    button {
+        margin-top: 40px;
+        width: 90%;
+        height: 50px;
+        border: 0px;
+        border-radius: 6px;
+        color: #FFFFFF;
+        font-size: 20px;
+        font-family: papyrus;
+        font-weight: bold;
+        background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(0, 0, 0), rgb(255, 255, 255));
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    button:hover {
+        background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(0, 0, 0), rgb(255, 255, 255));
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        transform: scale(1.05);
+        color: #ffffff;
+    }
+
+    .imgbanner {
+        width: 400px;
+        height: 110px;
+        border-radius: 8px;
+        background-image: url(https://images.unsplash.com/photo-1682943894249-ed8eda4362c3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTE0MTgzMjB8&ixlib=rb-4.0.3&q=85);
+        background-size: cover;
+        background-position: center;
+    }
+
+    h2 {
+        color: #FFFFFF;
+        padding-top: 30px;
+        font-family: papyrus;
+        font-weight: bolder;
+        font-size: 28px;
+    }
+
+
+
+    .divbn {
+        padding-left: 38px;
+    }
+    .label1{
+        margin-top: 50px;
+        font-size: 17px;
+        color: Black;
+    }
+     .label2{
+        margin-top: 30px;
+        font-size: 17px;
+        color: Black;
+    }
+    label{
+        padding-left:20px;
+        font-size: 20px;
+        color: Black;
+    }
+</style>
+
+</head>
+<body class="body1" background="https://images.unsplash.com/photo-1624359136353-f60129a367b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTE0MjA1NjV8&ixlib=rb-4.0.3&q=80&w=1400">
+
+    <div class="maindiv">
+
+        <div class="imgbanner">
+            <h2><center>Login to continue..</center></h2>
+        </div>
+
+
+        <form method="post" action="{% url 'AdminApp:Adminlogin' %}" enctype="multipart/form-data"  >
+            {% csrf_token %}
+            <div class="label1">
+                <label for="exampleInputName1" >User Name</label>
+                <input class="name" type="text" name="user_name" id="exampleInputName1" placeholder="UserName" required="" >
+            </div>
+            <div class="label2">
+                <label for="exampleInputpass1" >Password</label>
+                <input class="password" type="Password" name="pass_word" id="exampleInputpass1" placeholder="Password" required="" >
+            </div>
+            <div class="divbn">
+                <button type="submit">Log-in</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

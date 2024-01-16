@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+    .button-group {
+    display: flex;
+    justify-content: space-between;
+}
+ .tble {
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+            font-size: 18px;
+            background-color: rgb(6, 4, 78);
+            border-collapse: collapse;
+            text-align:center;
+        }
+        .tble1 {
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            font-size: 14px;
+            border-collapse: collapse;
+            text-align:center;
+        }
+        td, th {
+                height: 50px;
+                width: 100px;
+
+                }
+
+</style>
+
+</head>
+<body>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Product Details</h4>
+                  <p class="card-description">
+                    Details page <code>.Product-details</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table  style="width:100%;" >
+                      <thead>
+                        <tr class="tble">
+                          <th style="width: 5px; ">#</th>
+                          <th style="width: 140px;">Category Name</th>
+                          <th style="width: 140px;">Product Name</th>
+                          <th style="width: 200px;">Description</th>
+                          <th style="width: 100px;">Price</th>
+                          <th style="width: 250px;">Product Image</th>
+                          <th style="width: 160px;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {% for i in data %}
+                        <tr class="tble1">
+                          <td>{{forloop.counter}}</td>
+                          <td>{{i.Cat_Name}}</td>
+                          <td>{{i.Prod_Name}}</td>
+                          <td>{{i.Prod_Desc}}</td>
+                          <td>{{i.Price}}</td>
+                          <td cellpadding="5" >
+                            <div>
+                                <img class="img-fluid" src="{{i.Prod_Image.url}}" style="width: 230px; height: 140px; object-fit: cover; aspect-ratio: 200/130;" alt="image">
+                            </div>
+                          </td>
+                         <td>
+                            <div class="button-group">
+                                <form action="{% url 'AdminApp:Editprodpage' i.id %}">
+                                    <button style="padding:10px;"  class="btn btn-dark btn-icon-text">Edit<i class="mdi mdi-file-check btn-icon-append"></i> </button>
+                                 </form>
+                                <form action="{% url 'AdminApp:Deleteprod' i.id %}">
+                                    <button style="margin-left:-10px; padding:10px;"  class="btn btn-danger btn-icon-text"><i class="mdi mdi-alert btn-icon-prepend"></i>Delete</button>
+                                </form>
+                            </div>
+                        </td>
+
+                        </tr>
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</body>
+
+</html>
+{% endblock content %}
